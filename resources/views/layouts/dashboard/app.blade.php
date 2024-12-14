@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{{-- <html dir="{{ LaravelLocalization::getCurrentLocaleDirection() }}"> --}}
+<html dir="{{ LaravelLocalization::getCurrentLocaleDirection() }}">
 
 <head>
     <meta charset="utf-8">
@@ -184,14 +184,14 @@
                                 <li>
                                     {{-- <!-- inner menu: contains the actual data --> --}}
                                     <ul class="menu">
-                                        {{-- @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                                        @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                                             <li>
                                                 <a rel="alternate" hreflang="{{ $localeCode }}"
                                                     href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
                                                     {{ $properties['native'] }}
                                                 </a>
                                             </li>
-                                        @endforeach --}}
+                                        @endforeach
                                     </ul>
                                 </li>
                             </ul>
@@ -210,8 +210,8 @@
 
                                 {{-- <!-- User image --> --}}
                                 <li class="user-header">
-                                    <img src="{{ asset('dashboard_files/img/user2-160x160.jpg') }}" class="img-circle"
-                                        alt="User Image">
+                                    <img src="{{ asset('dashboard_files/img/user2-160x160.jpg') }}"
+                                        class="img-circle" alt="User Image">
 
                                     {{-- <p>
                                         {{ auth()->user()->name }} {{ auth()->user()->name }}

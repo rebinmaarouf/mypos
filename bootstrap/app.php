@@ -26,6 +26,7 @@ return Application::configure(basePath: dirname(__DIR__))
         //
         $middleware->alias([
             'local_middleware' => setLocale::class
+
         ]);
         $middleware->alias([
             /**** OTHER MIDDLEWARE ALIASES ****/

@@ -203,8 +203,8 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="{{ asset('dashboard_files/img/user2-160x160.jpg') }}" class="user-image"
                                     alt="User Image">
-                                {{-- <span class="hidden-xs">{{ auth()->user()->name }}
-                                    {{ auth()->user()->name }}</span> --}}
+                                <span class="hidden-xs">{{ auth()->user()?->first_name }}
+                                    {{ auth()->user()?->last_name }}</span>
                             </a>
                             <ul class="dropdown-menu">
 
@@ -213,10 +213,10 @@
                                     <img src="{{ asset('dashboard_files/img/user2-160x160.jpg') }}"
                                         class="img-circle" alt="User Image">
 
-                                    {{-- <p>
-                                        {{ auth()->user()->name }} {{ auth()->user()->name }}
+                                    <p>
+                                        {{ auth()->user()?->first_name }} {{ auth()->user()?->last_name }}
                                         <small>Member since 2 days</small>
-                                    </p> --}}
+                                    </p>
                                 </li>
 
                                 {{-- <!-- Menu Footer--> --}}
@@ -251,8 +251,8 @@
             <div class="pull-right hidden-xs">
                 <b>Version</b> 2.4.0
             </div>
-            <strong>Copyright &copy; 2014-2016
-                <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
+            <strong>Copyright &copy; 2024-2025
+                <a href="https://adminlte.io">Rebin Maarouf</a>.</strong> All rights
             reserved.
         </footer>
 
@@ -287,7 +287,7 @@
     <script src="{{ asset('dashboard_files/js/custom/image_preview.js') }}"></script>
     <script src="{{ asset('dashboard_files/js/custom/order.js') }}"></script>
 
-    {{-- <script>
+    <script>
         $(document).ready(function() {
 
             $('.sidebar-menu').tree();
@@ -324,25 +324,25 @@
 
             }); //end of delete
 
-            // // image preview
-            // $(".image").change(function () {
-            //
+            // image preview
+            // $(".image").change(function() {
+
             //     if (this.files && this.files[0]) {
             //         var reader = new FileReader();
-            //
-            //         reader.onload = function (e) {
+
+            //         reader.onload = function(e) {
             //             $('.image-preview').attr('src', e.target.result);
             //         }
-            //
+
             //         reader.readAsDataURL(this.files[0]);
             //     }
-            //
+
             // });
 
             CKEDITOR.config.language = "{{ app()->getLocale() }}";
 
         }); //end of ready
-    </script> --}}
+    </script>
     @stack('scripts')
 </body>
 

@@ -19,6 +19,7 @@ class User extends Authenticatable implements LaratrustUser
     use HasFactory, Notifiable, HasRolesAndPermissions;
 
 
+
     /**
      * The attributes that are mass assignable.
      *

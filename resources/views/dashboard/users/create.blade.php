@@ -25,10 +25,11 @@
 
                     @include('profile.partials._errors')
 
+
                     <form action="{{ route('dashboard.users.store') }}" method="post" enctype="multipart/form-data">
 
-                        @csrf
-                        @method('POST')
+                        {{ csrf_field() }}
+                        {{ method_field('post') }}
 
                         <div class="form-group">
                             <label>@lang('site.first_name')</label>
@@ -85,10 +86,12 @@
 
                                     @foreach ($models as $index => $model)
                                         <div class="tab-pane {{ $index == 0 ? 'active' : '' }}" id="{{ $model }}">
-
                                             @foreach ($maps as $map)
                                                 <label><input type="checkbox" name="permissions[]"
-                                                        value="{{ $map . '_' . $model }}"> @lang('site.' . $map)</label>
+                                                        value="{{ $model . '_' . $map }}"> @lang('site.' . $map)</label>
+
+                                                {{-- <label><input type="checkbox" name="permissions[]"
+                                                        value="{{ $map . '_' . $model }}"> @lang('site.' . $map)</label> --}}
                                             @endforeach
 
                                         </div>

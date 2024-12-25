@@ -4,42 +4,30 @@ namespace Database\Seeders;
 
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Permission;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class UsersTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
+    public function run()
     {
+        // Create a new user
         $user = User::create([
-            'first_name' => 'super',
-            'last_name' => 'admin',
+            'first_name' => 'Super',
+            'last_name' => 'Admin',
             'email' => 'super@app.com',
-            'password' => Hash::make('123456')
-
+            'password' => Hash::make('123456'),
         ]);
 
+        // Assign Role
+        $role = Role::where('name', 'supper_admin')->first();
+        if ($role) {
+            $user->roles()->attach($role->id);
+        }
 
-
-        $user->hasRole('admin');
-
-
-        // $admin = Role::create([
-        //     'name' => 'admin',
-        //     'display_name' => 'User Administrator', // optional
-        //     'description' => 'User is allowed to manage and edit other users', // optional
-        // ]);
-        // $owner = Role::create([
-        //     'name' => 'owner',
-        //     'display_name' => 'Project Owner', // optional
-        //     'description' => 'User is the owner of a given project', // optional
-        // ]);
-        // $user->attachRole('supper_admin');
-        // $user->ability(['admin', 'owner'], ['create', 'read', 'update', 'delete']);
+        // Assign Permissions (optional)
+        $permissions = Permission::pluck('id')->toArray();
+        $user->permissions()->sync($permissions);
     }
 }

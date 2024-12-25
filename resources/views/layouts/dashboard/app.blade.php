@@ -339,6 +339,8 @@
 
             // });
 
+
+            //Right–to–left (RTL) languages support
             CKEDITOR.config.language = "{{ app()->getLocale() }}";
 
         }); //end of ready

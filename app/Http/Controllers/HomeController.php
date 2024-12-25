@@ -3,17 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
 
-class HomeController extends Controller
+class HomeController extends Controller implements HasMiddleware
 {
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
+    public static function middleware(): array
     {
-        $this->middleware('auth');
+        return [
+            'auth',
+
+        ];
     }
 
     /**
@@ -23,6 +31,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('dashboard.index');
     }
 }

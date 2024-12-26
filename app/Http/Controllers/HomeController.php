@@ -31,6 +31,6 @@ class HomeController extends Controller implements HasMiddleware
      */
     public function index()
     {
-        return view('dashboard.index');
+        return view('dashboard.welcome');
     }
 }

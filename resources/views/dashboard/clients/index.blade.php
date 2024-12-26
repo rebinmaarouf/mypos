@@ -9,7 +9,7 @@
             <h1>@lang('site.clients')</h1>
 
             <ol class="breadcrumb">
-                <li><a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i> @lang('site.dashboard')</a></li>
+                <li><a href="{{ route('dashboard.welcome') }}"><i class="fa fa-dashboard"></i> @lang('site.dashboard')</a></li>
                 <li class="active">@lang('site.clients')</li>
             </ol>
         </section>
@@ -61,7 +61,7 @@
                                     <th>@lang('site.name')</th>
                                     <th>@lang('site.phone')</th>
                                     <th>@lang('site.address')</th>
-                                    {{-- <th>@lang('site.add_order')</th> --}}
+                                    <th>@lang('site.add_order')</th>
                                     <th>@lang('site.action')</th>
                                 </tr>
                             </thead>

@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\dashboard\UserController;
 use App\Http\Controllers\dashboard\ClientController;
 use App\Http\Controllers\dashboard\ProductController;
+use App\Http\Controllers\dashboard\WelcomeController;
 use App\Http\Controllers\dashboard\CategoryController;
 use App\Http\Controllers\dashboard\DashboardController;
 use App\Http\Controllers\dashboard\Client\OrderController;
@@ -19,7 +20,7 @@ Route::group(
     function () {
         Route::prefix('dashboard')->name('dashboard.')->group(function () {
             // Dashboard Index
-            Route::get('/index', [DashboardController::class, 'index'])->name('index');
+            Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 
             // User routes, excluding 'show' route
             Route::resource('users', UserController::class)->except(['show']);

@@ -9,7 +9,7 @@
             <h1>@lang('site.categories')</h1>
 
             <ol class="breadcrumb">
-                <li><a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i> @lang('site.categories')</a></li>
+                <li><a href="{{ route('dashboard.welcome') }}"><i class="fa fa-dashboard"></i> @lang('site.categories')</a></li>
                 <li class="active">@lang('site.categories')</li>
             </ol>
         </section>
@@ -71,6 +71,7 @@
                                         <td>{{ $index + 1 }}</td>
                                         <td>{{ $category->getTranslation('name', app()->getLocale())['name'] ?? 'Default Name' }}
                                         </td>
+
                                         <td>{{ $category->products->count() }}</td>
                                         <td><a href="{{ route('dashboard.products.index', ['category_id' => $category->id]) }}"
                                                 class="btn btn-info btn-sm">@lang('site.related_products')</a></td>

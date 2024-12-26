@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 
-
 class Category extends Model
 {
     use HasTranslations;
 
-    protected $fillable = ['name'];
+    protected $guarded = [];
+
     public $translatable = ['name'];
-    public $translatedAttributes = ['name'];
+    // public $translatedAttributes = ['name'];
 
     public function products()
     {

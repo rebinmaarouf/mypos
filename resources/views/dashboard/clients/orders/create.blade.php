@@ -32,23 +32,34 @@
                         <div class="box-body">
 
                             @foreach ($categories as $category)
-                                
                                 <div class="panel-group">
 
                                     <div class="panel panel-info">
 
+                                        {{-- <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a data-toggle="collapse"
+                                                    href="#{{ $category->getTranslation('name', app()->getLocale())['name'] ?? 'Default Name' }}">
+                                                    {{ $category->getTranslation('name', app()->getLocale())['name'] ?? 'Default Name' }}
+                                                </a>
+                                            </h4>
+                                        </div> --}}
                                         <div class="panel-heading">
                                             <h4 class="panel-title">
-                                                <a data-toggle="collapse" href="#{{ str_replace(' ', '-', $category->name) }}">{{ $category->name }}</a>
+                                                <a data-toggle="collapse"
+                                                    href="#{{ Illuminate\Support\Str::slug($category->getTranslation('name', app()->getLocale())['name'] ?? 'default-name') }}">
+                                                    {{ $category->getTranslation('name', app()->getLocale())['name'] ?? 'Default Name' }}
+                                                </a>
                                             </h4>
                                         </div>
 
-                                        <div id="{{ str_replace(' ', '-', $category->name) }}" class="panel-collapse collapse">
+                                        <div id="{{ Illuminate\Support\Str::slug($category->getTranslation('name', app()->getLocale())['name'] ?? 'default-name') }}"
+                                            class="panel-collapse collapse">
+                                            <!-- Your collapsible content here -->
 
                                             <div class="panel-body">
 
                                                 @if ($category->products->count() > 0)
-
                                                     <table class="table table-hover">
                                                         <tr>
                                                             <th>@lang('site.name')</th>
@@ -63,12 +74,11 @@
                                                                 <td>{{ $product->stock }}</td>
                                                                 <td>{{ number_format($product->sale_price, 2) }}</td>
                                                                 <td>
-                                                                    <a href=""
-                                                                       id="product-{{ $product->id }}"
-                                                                       data-name="{{ $product->name }}"
-                                                                       data-id="{{ $product->id }}"
-                                                                       data-price="{{ $product->sale_price }}"
-                                                                       class="btn btn-success btn-sm add-product-btn">
+                                                                    <a href="" id="product-{{ $product->id }}"
+                                                                        data-name="{{ $product->name }}"
+                                                                        data-id="{{ $product->id }}"
+                                                                        data-price="{{ $product->sale_price }}"
+                                                                        class="btn btn-success btn-sm add-product-btn">
                                                                         <i class="fa fa-plus"></i>
                                                                     </a>
                                                                 </td>
@@ -76,7 +86,6 @@
                                                         @endforeach
 
                                                     </table><!-- end of table -->
-
                                                 @else
                                                     <h5>@lang('site.no_records')</h5>
                                                 @endif
@@ -88,7 +97,6 @@
                                     </div><!-- end of panel primary -->
 
                                 </div><!-- end of panel group -->
-
                             @endforeach
 
                         </div><!-- end of box body -->
@@ -114,15 +122,15 @@
                                 {{ csrf_field() }}
                                 {{ method_field('post') }}
 
-                                @include('partials._errors')
+                                @include('profile.partials._errors')
 
                                 <table class="table table-hover">
                                     <thead>
-                                    <tr>
-                                        <th>@lang('site.product')</th>
-                                        <th>@lang('site.quantity')</th>
-                                        <th>@lang('site.price')</th>
-                                    </tr>
+                                        <tr>
+                                            <th>@lang('site.product')</th>
+                                            <th>@lang('site.quantity')</th>
+                                            <th>@lang('site.price')</th>
+                                        </tr>
                                     </thead>
 
                                     <tbody class="order-list">
@@ -134,7 +142,8 @@
 
                                 <h4>@lang('site.total') : <span class="total-price">0</span></h4>
 
-                                <button class="btn btn-primary btn-block disabled" id="add-order-form-btn"><i class="fa fa-plus"></i> @lang('site.add_order')</button>
+                                <button class="btn btn-primary btn-block disabled" id="add-order-form-btn"><i
+                                        class="fa fa-plus"></i> @lang('site.add_order')</button>
 
                             </form>
 
@@ -143,7 +152,6 @@
                     </div><!-- end of box -->
 
                     @if ($client->orders->count() > 0)
-
                         <div class="box box-primary">
 
                             <div class="box-header">
@@ -157,18 +165,19 @@
                             <div class="box-body">
 
                                 @foreach ($orders as $order)
-
                                     <div class="panel-group">
 
                                         <div class="panel panel-success">
 
                                             <div class="panel-heading">
                                                 <h4 class="panel-title">
-                                                    <a data-toggle="collapse" href="#{{ $order->created_at->format('d-m-Y-s') }}">{{ $order->created_at->toFormattedDateString() }}</a>
+                                                    <a data-toggle="collapse"
+                                                        href="#{{ $order->created_at->format('d-m-Y-s') }}">{{ $order->created_at->toFormattedDateString() }}</a>
                                                 </h4>
                                             </div>
 
-                                            <div id="{{ $order->created_at->format('d-m-Y-s') }}" class="panel-collapse collapse">
+                                            <div id="{{ $order->created_at->format('d-m-Y-s') }}"
+                                                class="panel-collapse collapse">
 
                                                 <div class="panel-body">
 
@@ -185,7 +194,6 @@
                                         </div><!-- end of panel primary -->
 
                                     </div><!-- end of panel group -->
-
                                 @endforeach
 
                                 {{ $orders->links() }}
@@ -193,7 +201,6 @@
                             </div><!-- end of box body -->
 
                         </div><!-- end of box -->
-
                     @endif
 
                 </div><!-- end of col -->

@@ -11,16 +11,6 @@ use App\Http\Controllers\Controller;
 
 class OrderController extends Controller
 {
-    public function index(Request $request)
-    {
-        $orders = Order::whereHas('client', function ($q) use ($request) {
-
-            return $q->where('name', 'like', '%' . $request->search . '%');
-        })->paginate(5);
-
-        return view('dashboard.orders.index', compact('orders'));
-    } //end of index
-
     public function create(Client $client)
     {
         $categories = Category::with('products')->get();
@@ -39,21 +29,27 @@ class OrderController extends Controller
         session()->flash('success', __('site.added_successfully'));
         return redirect()->route('dashboard.orders.index');
     } //end of store
-
-
-    public function destroy(Order $order)
+    public function edit(Client $client, Order $order)
     {
-        foreach ($order->products as $product) {
+        $categories = Category::with('products')->get();
+        $orders = $client->orders()->with('products')->paginate(5);
+        return view('dashboard.clients.orders.edit', compact('client', 'order', 'categories', 'orders'));
+    } //end of edit
 
-            $product->update([
-                'stock' => $product->stock + $product->pivot->quantity
-            ]);
-        } //end of for each
+    public function update(Request $request, Client $client, Order $order)
+    {
+        $request->validate([
+            'products' => 'required|array',
+        ]);
 
-        $order->delete();
-        session()->flash('success', __('site.deleted_successfully'));
+        $this->detach_order($order);
+
+        $this->attach_order($request, $client);
+
+        session()->flash('success', __('site.updated_successfully'));
         return redirect()->route('dashboard.orders.index');
-    } //end of order
+    } //end of update
+
 
     private function attach_order($request, $client)
     {
@@ -77,10 +73,17 @@ class OrderController extends Controller
             'total_price' => $total_price
         ]);
     } //end of attach order
-    public function products(Order $order)
+
+    private function detach_order($order)
     {
-        $products = $order->products;
-        return view('dashboard.orders._products', compact('order', 'products'));
-    } //end of products
+        foreach ($order->products as $product) {
+
+            $product->update([
+                'stock' => $product->stock + $product->pivot->quantity
+            ]);
+        } //end of for each
+
+        $order->delete();
+    } //end of detach order
 
 }

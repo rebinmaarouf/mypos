@@ -35,15 +35,6 @@
                                 <div class="panel-group">
 
                                     <div class="panel panel-info">
-
-                                        {{-- <div class="panel-heading">
-                                            <h4 class="panel-title">
-                                                <a data-toggle="collapse"
-                                                    href="#{{ $category->getTranslation('name', app()->getLocale())['name'] ?? 'Default Name' }}">
-                                                    {{ $category->getTranslation('name', app()->getLocale())['name'] ?? 'Default Name' }}
-                                                </a>
-                                            </h4>
-                                        </div> --}}
                                         <div class="panel-heading">
                                             <h4 class="panel-title">
                                                 <a data-toggle="collapse"

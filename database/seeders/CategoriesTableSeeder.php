@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class CategoriesTableSeeder extends Seeder
@@ -13,18 +12,25 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run(): void
     {
+        $categories = [
+            [
+                'ar' => ['name' => 'الفئة الأولى'],
+                'en' => ['name' => 'Category One'],
+            ],
+            [
+                'ar' => ['name' => 'الفئة الثانية'],
+                'en' => ['name' => 'Category Two'],
+            ],
+            [
+                'ar' => ['name' => 'الفئة الثالثة'],
+                'en' => ['name' => 'Category Three'],
+            ],
+        ];
 
-
-        $categories = ['cat one', 'cat two', 'cat three'];
-
-        foreach ($categories as $category) {
-
+        foreach ($categories as $translations) {
             Category::create([
-                'ar' => ['name' => $category],
-                'en' => ['name' => $category],
+                'name' => $translations, // Assign translations directly
             ]);
-        } //end of foreach
-
-    } //end of run
-
+        }
+    }
 }

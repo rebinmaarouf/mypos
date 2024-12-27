@@ -72,4 +72,9 @@ class User extends Authenticatable implements LaratrustUser
     {
         return asset('uploads/user_images/' . $this->image);
     } //end of get image path
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

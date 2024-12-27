@@ -18,6 +18,11 @@ class DatabaseSeeder extends Seeder
         $this->call(PermissionsTableSeeder::class);
         $this->call(RoleAndPermissionSeeder::class);
         $this->call(LaratrustSeeder::class);
+        $this->call(CategoriesTableSeeder::class);
+        $this->call(ProductsTableSeeder::class);
+        $this->call(ClientsTableSeeder::class);
+
+
         // User::factory(10)->create();
 
         // User::factory()->create([

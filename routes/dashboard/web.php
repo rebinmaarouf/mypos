@@ -9,7 +9,8 @@ use App\Http\Controllers\dashboard\ProductController;
 use App\Http\Controllers\dashboard\WelcomeController;
 use App\Http\Controllers\dashboard\CategoryController;
 use App\Http\Controllers\dashboard\DashboardController;
-use App\Http\Controllers\dashboard\Client\OrderController;
+use App\Http\Controllers\dashboard\OrderController as OrderController;
+use App\Http\Controllers\dashboard\Client\OrderController as OrderClienController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 Route::group(
@@ -30,10 +31,11 @@ Route::group(
             Route::resource('products', ProductController::class)->except(['show']);
             //client routes
             Route::resource('clients', ClientController::class)->except(['show']);
-            Route::resource('clients.orders', OrderController::class)->except(['show']);
+            Route::resource('clients.orders', OrderClienController::class)->except(['show']);
 
             //order routes
             Route::resource('orders', OrderController::class);
+            Route::get('/orders/{order}/products', [OrderController::class, 'products'])->name('orders.products');
         });
     }
 );
